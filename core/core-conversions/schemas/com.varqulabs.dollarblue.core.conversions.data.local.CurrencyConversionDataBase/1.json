@@ -1,0 +1,95 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "3ee3a4b85b5c06a9fcc30dd7fdfce739",
+    "entities": [
+      {
+        "tableName": "currency_conversions",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`localId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `conversionId` TEXT NOT NULL, `dollarType` TEXT NOT NULL, `dollarRate` REAL NOT NULL, `inputValue` REAL NOT NULL, `outputValue` REAL NOT NULL, `inputCurrency` TEXT NOT NULL, `outputCurrency` TEXT NOT NULL, `createdAt` INTEGER NOT NULL, `updatedAt` INTEGER NOT NULL, `name` TEXT, `normalizedName` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "localId",
+            "columnName": "localId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "conversionId",
+            "columnName": "conversionId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dollarType",
+            "columnName": "dollarType",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dollarRate",
+            "columnName": "dollarRate",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "inputValue",
+            "columnName": "inputValue",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "outputValue",
+            "columnName": "outputValue",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "inputCurrency",
+            "columnName": "inputCurrency",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "outputCurrency",
+            "columnName": "outputCurrency",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "normalizedName",
+            "columnName": "normalizedName",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "localId"
+          ]
+        }
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '3ee3a4b85b5c06a9fcc30dd7fdfce739')"
+    ]
+  }
+}

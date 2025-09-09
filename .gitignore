@@ -1,0 +1,61 @@
+# Default
+.kotlin
+xcuserdata
+!src/**/build/
+.idea
+captures
+.cxx
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcodeproj/project.xcworkspace/
+!*.xcworkspace/contents.xcworkspacedata
+**/xcshareddata/WorkspaceSettings.xcsettings
+
+**/output-metadata*.json
+
+app/release/baselineProfiles/*.dm
+
+# --- Android Studio / IntelliJ ---
+**/runConfigurations.xml
+**/AndroidProjectSystem.xml
+
+#Built application files
+*.apk
+*.ap_
+*.aab
+
+# Gradle files
+.gradle/
+**/build/
+
+# Local configuration file (SDK path, etc)
+local.properties
+signing.properties
+
+# Log/Crash files
+*.log
+
+# Android Studio
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Generated files
+bin/
+gen/
+
+# Keystore files (never commit signing keys)
+*.jks
+*.keystore
+
+#NDK
+obj/
+.externalNativeBuild
+
+# CMake
+.cxx/
+
+# OSX files
+.DS_Store
