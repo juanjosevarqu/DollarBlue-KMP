@@ -11,6 +11,7 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.varqulabs.feature.calculator.core.LaunchPulseEffect
+import com.varqulabs.feature.calculator.core.formatWithDecimals
 
 @Composable
 fun CurrencyRateNow(
@@ -25,7 +26,7 @@ fun CurrencyRateNow(
 
         LaunchPulseEffect(key = currencyRate) {
             Text(
-                text = "1 USDT ≈ ${currencyRate} BOB",
+                text = "1 USDT ≈ ${currencyRate.formatWithDecimals(2)} BOB",
                 style = TextStyle(
                     color = Color.Gray,
                     fontSize = 13.sp,

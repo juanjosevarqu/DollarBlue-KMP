@@ -21,8 +21,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.util.fastRoundToInt
 import com.varqulabs.dollarblue.core.conversions.domain.model.Currency.DOLLAR
+import com.varqulabs.feature.calculator.core.formatInputNumbers
+import com.varqulabs.feature.calculator.core.formatWithDecimalsBeforeRange
+import com.varqulabs.feature.calculator.core.formatWithoutDecimals
 import com.varqulabs.feature.calculator.core.whiteCeCe
 import com.varqulabs.feature.calculator.domain.model.DolarRate
 import com.varqulabs.feature.calculator.platform.DeviceOrientation
@@ -47,12 +49,12 @@ fun CalculatorScreen(
     val isPortrait = getDeviceOrientation() == DeviceOrientation.PORTRAIT
 
     val inputFormatted by remember(state.inputExpression) {
-        derivedStateOf { state.inputExpression }
+        derivedStateOf { state.inputExpression.formatInputNumbers(decimals = 0) }
     }
     val outputFormatted by remember(state.outputValue) {
         derivedStateOf {
-            if (state.outputCurrency == DOLLAR) state.outputValue
-            else state.outputValue
+            if (state.outputCurrency == DOLLAR) state.outputValue.formatWithDecimalsBeforeRange()
+            else state.outputValue.formatWithoutDecimals()
         }
     }
 
@@ -76,7 +78,7 @@ fun CalculatorScreen(
             inputCurrency = state.inputCurrency,
             outputCurrency = state.outputCurrency,
             inputExpression = inputFormatted,
-            outputExpression = outputFormatted.fastRoundToInt().toString(),
+            outputExpression = outputFormatted,
             currencyRate = state.dollarRate.value,
             dateUpdated = state.dateUpdated,
             isPortrait = isPortrait,

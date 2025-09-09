@@ -6,6 +6,7 @@ import com.varqulabs.core.service.utils.DataState
 import com.varqulabs.dollarblue.core.conversions.domain.model.Currency
 import com.varqulabs.feature.calculator.core.mvi.MVIContract
 import com.varqulabs.feature.calculator.core.mvi.MVIDelegate
+import com.varqulabs.feature.calculator.core.roundDecimals
 import com.varqulabs.feature.calculator.domain.model.DolarRate
 import com.varqulabs.feature.calculator.domain.model.DollarType
 import com.varqulabs.feature.calculator.domain.usecase.bolivian_usdt.GetBolivianUSDT
@@ -48,11 +49,11 @@ class CalculatorViewModel(
                             val usdtSellRate = DolarRate(DollarType.USDT_SELL, dataState.data.valueSell)
                             copy(
                                 dollarRate = usdtSellRate,
-                                outputValue = (dataState.data.valueSell * inputValue),
+                                outputValue = (dataState.data.valueSell * inputValue).roundDecimals(2),
                                 dateUpdated = dataState.data.dateUpdated,
                                 dollarRates = listOf(
                                     usdtSellRate,
-                                    DolarRate(DollarType.USDT_BUY, (dataState.data.valueSell * 0.995)),
+                                    DolarRate(DollarType.USDT_BUY, (dataState.data.valueSell * 0.995).roundDecimals(2)),
                                     DolarRate(DollarType.OFFICIAL, 6.96),
                                 ),
                                 isLoading = false,
@@ -141,8 +142,8 @@ class CalculatorViewModel(
         updateUi {
             copy(
                 inputExpression = newInputExpression,
-                inputValue = newInputValue,
-                outputValue = newOutputValue,
+                inputValue = newInputValue.roundDecimals(2),
+                outputValue = newOutputValue.roundDecimals(2),
             )
         }
     }
@@ -181,7 +182,7 @@ class CalculatorViewModel(
         updateUi {
             copy(
                 dollarRate = newRate,
-                outputValue = newOutputValue,
+                outputValue = newOutputValue.roundDecimals(2),
             )
         }
     }
