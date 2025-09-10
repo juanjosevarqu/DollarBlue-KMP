@@ -24,12 +24,12 @@ actual object NumberFormatter {
     private fun nf(): NumberFormat =
              tl.get() ?: NumberFormat.getNumberInstance(toLocale(locale)).also { tl.set(it) }
 
-    actual fun format(value: Double, minFraction: Int, maxFraction: Int, grouping: Boolean): String =
+    actual fun format(value: Double, minFractionDigits: Int, maxFractionDigits: Int, groupingEnabled: Boolean): String =
         nf().apply {
-            isGroupingUsed = grouping
-            minimumFractionDigits = minFraction
-            maximumFractionDigits = maxFraction
+            isGroupingUsed = groupingEnabled
+            minimumFractionDigits = minFractionDigits
+            maximumFractionDigits = maxFractionDigits
         }.format(value)
 
-    actual fun parse(text: String): Double? = runCatching { nf().parse(text)?.toDouble() }.getOrNull()
+    actual fun parse(input: String): Double? = runCatching { nf().parse(input)?.toDouble() }.getOrNull()
 }

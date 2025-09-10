@@ -17,26 +17,26 @@ private fun toNSLocale(locale: AppLocale): NSLocale = when (locale) {
 actual object NumberFormatter {
     actual var locale: AppLocale = AppLocale.System
 
-    actual fun format(value: Double, minFraction: Int, maxFraction: Int, grouping: Boolean): String {
+    actual fun format(value: Double, minFractionDigits: Int, maxFractionDigits: Int, groupingEnabled: Boolean): String {
         val appLoc = this.locale
         val nf = NSNumberFormatter().apply {
             numberStyle = NSNumberFormatterDecimalStyle
             this.locale = toNSLocale(appLoc)
-            usesGroupingSeparator = grouping
-            minimumFractionDigits = minFraction.toULong()
-            maximumFractionDigits = maxFraction.toULong()
+            usesGroupingSeparator = groupingEnabled
+            minimumFractionDigits = minFractionDigits.toULong()
+            maximumFractionDigits = maxFractionDigits.toULong()
             allowsFloats = true
         }
         return nf.stringFromNumber(NSNumber.numberWithDouble(value)) ?: value.toString()
     }
 
-    actual fun parse(text: String): Double? {
+    actual fun parse(input: String): Double? {
         val appLoc = this.locale
         val nf = NSNumberFormatter().apply {
             numberStyle = NSNumberFormatterDecimalStyle
             this.locale = toNSLocale(appLoc)
             allowsFloats = true
         }
-        return nf.numberFromString(text)?.doubleValue
+        return nf.numberFromString(input)?.doubleValue
     }
 }

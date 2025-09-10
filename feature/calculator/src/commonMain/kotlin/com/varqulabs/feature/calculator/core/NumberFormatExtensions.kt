@@ -36,12 +36,12 @@ fun Double.formatWithDecimalsBeforeRange(
         this.formatWithDecimals(decimals)
     }
 
-fun String.formatInputNumbers(fractionDigits: Int = 0): String =
+fun String.formatInputNumbers(decimals: Int = 0): String =
     split('+').joinToString(" + ") { termRaw ->
         val term = termRaw.trim()
         val parsed = NumberFormatter.parse(term) ?: term.toDoubleOrNull()
         if (parsed != null) {
-            if (fractionDigits == 0) parsed.formatWithoutDecimals()
+            if (decimals == 0) parsed.formatWithoutDecimals()
             else parsed.formatWithDecimalsBeforeRange()
         } else term
     }
