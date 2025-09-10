@@ -25,6 +25,7 @@ import com.varqulabs.dollarblue.core.conversions.domain.model.Currency.DOLLAR
 import com.varqulabs.feature.calculator.core.formatInputNumbers
 import com.varqulabs.feature.calculator.core.formatWithDecimalsBeforeRange
 import com.varqulabs.feature.calculator.core.formatWithoutDecimals
+import com.varqulabs.feature.calculator.core.time.formatDateCustom
 import com.varqulabs.feature.calculator.core.whiteCeCe
 import com.varqulabs.feature.calculator.domain.model.DolarRate
 import com.varqulabs.feature.calculator.platform.DeviceOrientation
@@ -80,7 +81,7 @@ fun CalculatorScreen(
             inputExpression = inputFormatted,
             outputExpression = outputFormatted,
             currencyRate = state.dollarRate.value,
-            dateUpdated = state.dateUpdated,
+            dateUpdated = state.dateUpdated.formatDateCustom(),
             isPortrait = isPortrait,
             modifier = Modifier
                 .fillMaxWidth()
