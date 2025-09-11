@@ -1,8 +1,8 @@
 package com.varqulabs.feature.calculator.presentation.models
 
 import androidx.compose.ui.graphics.Color
-import com.varqulabs.feature.calculator.core.greenDark_75
-import com.varqulabs.feature.calculator.core.greenDark_80
+import com.varqulabs.core.designsystem.greenDark_75
+import com.varqulabs.core.designsystem.greenDark_80
 
 enum class CalButton(
     val character: String,

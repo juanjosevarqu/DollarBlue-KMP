@@ -9,7 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.varqulabs.feature.calculator.presentation.components.rates.CurrencyRateNow
 import com.varqulabs.dollarblue.core.conversions.domain.model.Currency
-import com.varqulabs.feature.calculator.core.white_96
+import com.varqulabs.core.designsystem.white_96
 
 @Composable
 fun CurrencyOutputWithRateNow(

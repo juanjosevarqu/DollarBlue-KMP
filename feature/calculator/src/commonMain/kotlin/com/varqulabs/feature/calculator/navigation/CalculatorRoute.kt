@@ -5,8 +5,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
-import com.varqulabs.feature.calculator.core.LaunchedEffectOnce
-import com.varqulabs.feature.calculator.core.mvi.CollectUiEffect
+import com.varqulabs.dollarblue.core.ui.launched_effect.LaunchedEffectOnce
+import com.varqulabs.dollarblue.core.ui.mvi.CollectUiEffect
 import com.varqulabs.feature.calculator.presentation.CalculatorEvent.Init
 import com.varqulabs.feature.calculator.presentation.CalculatorScreen
 import com.varqulabs.feature.calculator.presentation.CalculatorUIEffect.ConversionSavedSuccessfully

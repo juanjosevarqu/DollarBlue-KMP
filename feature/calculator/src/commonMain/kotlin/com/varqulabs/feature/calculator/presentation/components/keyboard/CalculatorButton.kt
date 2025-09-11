@@ -12,7 +12,7 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.varqulabs.feature.calculator.core.whiteOpacity_80
+import com.varqulabs.core.designsystem.whiteOpacity_80
 import com.varqulabs.feature.calculator.presentation.models.ButtonType
 import com.varqulabs.feature.calculator.presentation.models.CalButton
 import dollarbluekmp.feature.calculator.generated.resources.Res

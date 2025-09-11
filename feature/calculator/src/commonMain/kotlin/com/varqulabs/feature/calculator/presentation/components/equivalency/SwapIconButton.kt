@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.varqulabs.feature.calculator.core.white_96
+import com.varqulabs.core.designsystem.white_96
 import dollarbluekmp.feature.calculator.generated.resources.Res
 import dollarbluekmp.feature.calculator.generated.resources.menu_swap
 import org.jetbrains.compose.resources.vectorResource

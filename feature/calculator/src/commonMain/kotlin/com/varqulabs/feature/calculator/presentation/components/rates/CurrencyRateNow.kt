@@ -10,8 +10,8 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import com.varqulabs.feature.calculator.core.LaunchPulseEffect
-import com.varqulabs.feature.calculator.core.formatWithDecimals
+import com.varqulabs.dollarblue.core.ui.launched_effect.LaunchPulseEffect
+import com.varqulabs.core.common.extensions.formatWithDecimals
 
 @Composable
 fun CurrencyRateNow(

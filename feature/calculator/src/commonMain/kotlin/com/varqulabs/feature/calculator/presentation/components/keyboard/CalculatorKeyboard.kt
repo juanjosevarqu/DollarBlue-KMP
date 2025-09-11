@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.varqulabs.core.designsystem.greenDark_65
 import com.varqulabs.feature.calculator.presentation.models.ButtonType
 import com.varqulabs.feature.calculator.presentation.models.CalButton
 import com.varqulabs.feature.calculator.presentation.models.CalButton.CLEAR
@@ -29,7 +30,6 @@ import com.varqulabs.feature.calculator.presentation.models.CalButton.SWITCH
 import com.varqulabs.feature.calculator.presentation.models.CalButton.THREE
 import com.varqulabs.feature.calculator.presentation.models.CalButton.TWO
 import com.varqulabs.feature.calculator.presentation.models.CalButton.ZERO
-import com.varqulabs.feature.calculator.core.greenDark_65
 
 private val calculatorRows = listOf(
     listOf(SEVEN, EIGHT, NINE, DELETE),

@@ -4,9 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.varqulabs.core.service.utils.DataState
 import com.varqulabs.dollarblue.core.conversions.domain.model.Currency
-import com.varqulabs.feature.calculator.core.mvi.MVIContract
-import com.varqulabs.feature.calculator.core.mvi.MVIDelegate
-import com.varqulabs.feature.calculator.core.roundDecimals
+import com.varqulabs.dollarblue.core.ui.mvi.MVIContract
+import com.varqulabs.dollarblue.core.ui.mvi.MVIDelegate
+import com.varqulabs.core.common.extensions.roundDecimals
 import com.varqulabs.feature.calculator.domain.model.DolarRate
 import com.varqulabs.feature.calculator.domain.model.DollarType
 import com.varqulabs.feature.calculator.domain.usecase.bolivian_usdt.GetBolivianUSDT

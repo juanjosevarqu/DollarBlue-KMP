@@ -25,8 +25,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.varqulabs.core.designsystem.greenDark_45
 import com.varqulabs.dollarblue.core.conversions.domain.model.Currency
-import com.varqulabs.feature.calculator.core.greenDark_45
 import kotlinx.coroutines.delay
 
 @Composable
