@@ -1,6 +1,7 @@
 package com.varqulabs.dollarblue
 
-import com.varqulabs.dollarblue.core.conversions.di.currencyConversionDataBaseModule
+import com.varqulabs.dollarblue.core.conversions.di.currencyConversionModule
+import com.varqulabs.dollarblue.core.credits.di.creditsModule
 import com.varqulabs.dollarblue.core.preferences.di.preferencesModule
 import com.varqulabs.feature.calculator.di.calculatorModule
 import org.koin.core.context.startKoin
@@ -12,7 +13,8 @@ fun initKoin(appDeclaration: KoinAppDeclaration? = null) {
         appDeclaration?.invoke(this)
         modules(
             preferencesModule,
-            currencyConversionDataBaseModule,
+            currencyConversionModule,
+            creditsModule,
             calculatorModule,
         )
     }

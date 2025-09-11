@@ -10,7 +10,7 @@ import org.koin.dsl.module
 expect val currencyConversionDataBaseModule: Module
 
 val currencyConversionModule: Module = module {
-    includes(currencyConversionModule)
+    includes(currencyConversionDataBaseModule)
     single<CurrencyConversionDao> { get<CurrencyConversionDataBase>().currencyConversionDao() }
     single<CurrencyConversionRepository> { CurrencyConversionRepositoryImpl(get()) }
 }

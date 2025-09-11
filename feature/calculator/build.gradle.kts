@@ -51,6 +51,7 @@ kotlin {
                 implementation(projects.core.coreDesignsystem)
                 implementation(projects.core.coreNetwork)
                 implementation(projects.core.corePreferences)
+                implementation(projects.core.coreCredits)
                 api(projects.core.coreConversions)
 
                 implementation(compose.runtime)

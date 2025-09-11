@@ -7,32 +7,40 @@ import com.varqulabs.dollarblue.core.conversions.domain.model.Currency
 import com.varqulabs.dollarblue.core.ui.mvi.MVIContract
 import com.varqulabs.dollarblue.core.ui.mvi.MVIDelegate
 import com.varqulabs.core.common.extensions.roundDecimals
+import com.varqulabs.dollarblue.core.conversions.domain.model.CurrencyConversion
+import com.varqulabs.dollarblue.core.credits.domain.usecase.GetCredits
 import com.varqulabs.feature.calculator.domain.model.DolarRate
 import com.varqulabs.feature.calculator.domain.model.DollarType
 import com.varqulabs.feature.calculator.domain.usecase.bolivian_usdt.GetBolivianUSDT
+import com.varqulabs.feature.calculator.domain.usecase.currency_conversion.SaveConversion
 import com.varqulabs.feature.calculator.presentation.CalculatorEvent.Init
 import com.varqulabs.feature.calculator.presentation.CalculatorEvent.OnPressButton
 import com.varqulabs.feature.calculator.presentation.CalculatorEvent.OnSaveConversion
 import com.varqulabs.feature.calculator.presentation.CalculatorEvent.OnSelectDolarRate
 import com.varqulabs.feature.calculator.presentation.CalculatorEvent.OnSwapCurrencies
+import com.varqulabs.feature.calculator.presentation.CalculatorUIEffect.ConversionSavedSuccessfully
 import com.varqulabs.feature.calculator.presentation.models.ButtonType
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlin.math.roundToLong
+import kotlin.time.Clock
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 private const val MAX_ACCEPTABLE_VALUE = 999_999_999_999.99
 
 class CalculatorViewModel(
     private val getBolivianUSDT: GetBolivianUSDT,
-    //private val getCredits: GetCredits,
-    //private val saveConversion: SaveConversion,
-    //private val dispatcher: CoroutineDispatcher,
+    private val getCredits: GetCredits,
+    private val saveConversion: SaveConversion,
+    private val dispatcher: CoroutineDispatcher,
 ) : ViewModel(), MVIContract<CalculatorState, CalculatorEvent, CalculatorUIEffect> by MVIDelegate(CalculatorState()) {
 
     override fun eventHandler(event: CalculatorEvent) {
         when (event) {
             is Init -> getBolivianUSDTValues()
-            is OnSaveConversion -> {}//saveCurrencyConversion(event.name)
+            is OnSaveConversion -> saveCurrencyConversion(event.name)
             is OnSwapCurrencies -> switchCurrencies()
             is OnPressButton -> onButtonPressed(event.character, event.buttonType)
             is OnSelectDolarRate -> onDolarRateSelected(event.newRate)
@@ -67,7 +75,7 @@ class CalculatorViewModel(
         }
     }
 
-    /*@OptIn(ExperimentalUuidApi::class)
+    @OptIn(ExperimentalUuidApi::class)
     private fun saveCurrencyConversion(name: String) {
         val conversion = CurrencyConversion(
             localId = 0L,
@@ -87,7 +95,7 @@ class CalculatorViewModel(
                 .onSuccess { emitEffect(ConversionSavedSuccessfully) }
                 .onFailure { updateUi { copy(isError = true) } }
         }
-    }*/
+    }
 
     private fun onButtonPressed(
         character: String,
@@ -104,14 +112,15 @@ class CalculatorViewModel(
     }
 
     private fun validateIfUserCanSaveConversion() {
-        /*viewModelScope.launch(dispatcher) {
-            *//*val credits = getCredits()
+        viewModelScope.launch(dispatcher) {
+            val credits = getCredits()
             if (credits <= 0) {
                 emitEffect(CalculatorUIEffect.ShowWithoutCreditsDialog)
             } else {
-                emitEffect(CalculatorUIEffect.ShowSaveConversionDialog)
-            }*//*
-        }*/
+                //emitEffect(CalculatorUIEffect.ShowSaveConversionDialog)
+                saveCurrencyConversion("") // TODO - Remove this line when dialog is implemented
+            }
+        }
     }
 
     private fun appendOperator(operator: String) {
