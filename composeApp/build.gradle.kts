@@ -41,6 +41,8 @@ kotlin {
                 implementation(projects.core.coreCredits)
                 implementation(projects.core.coreConversions)
                 implementation(projects.feature.calculator)
+                implementation(projects.core.coreUi)
+                implementation(projects.core.coreCommon)
 
                 implementation(compose.runtime)
                 implementation(compose.foundation)

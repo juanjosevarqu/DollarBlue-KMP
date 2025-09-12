@@ -117,8 +117,8 @@ class CalculatorViewModel(
             if (credits <= 0) {
                 emitEffect(CalculatorUIEffect.ShowWithoutCreditsDialog)
             } else {
-                //emitEffect(CalculatorUIEffect.ShowSaveConversionDialog)
-                saveCurrencyConversion("") // TODO - Remove this line when dialog is implemented
+                emitEffect(CalculatorUIEffect.ShowSaveConversionDialog)
+                //saveCurrencyConversion("") // TODO - Remove this line when dialog is implemented
             }
         }
     }

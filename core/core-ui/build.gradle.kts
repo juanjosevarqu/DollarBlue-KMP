@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.android.lint)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.kotlinx.serialization)
 }
 
 kotlin {
@@ -36,11 +37,13 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation(libs.kotlinx.coroutines.core)
                 implementation(compose.runtime)
                 implementation(compose.ui)
                 implementation(compose.foundation)
                 implementation(compose.material3)
+
+                implementation(libs.kotlinx.coroutines.core)
+                implementation(libs.androidx.navigation.compose)
             }
         }
 

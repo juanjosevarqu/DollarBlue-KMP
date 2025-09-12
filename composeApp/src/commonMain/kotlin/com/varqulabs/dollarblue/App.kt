@@ -1,29 +1,13 @@
 package com.varqulabs.dollarblue
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.safeContentPadding
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import com.varqulabs.dollarblue.core.conversions.domain.model.Currency
-import com.varqulabs.feature.calculator.di.calculatorModule
-import com.varqulabs.feature.calculator.navigation.Routes
-import com.varqulabs.feature.calculator.navigation.calculatorRoute
-import org.jetbrains.compose.resources.painterResource
+import com.varqulabs.dollarblue.core.ui.navigation.Routes
+import com.varqulabs.feature.calculator.navigation.calculatorGraph
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -38,13 +22,12 @@ fun App() {
         NavHost(
             modifier = Modifier.fillMaxSize(),
             navController = navController,
-            startDestination = Routes.Calculator,
+            startDestination = Routes.CalculatorGraph,
         ) {
-            calculatorRoute(
+            calculatorGraph(
                 navController = navController,
-                goToHistory = {},
-                onGoToSaveConversion = {},
-                onGoToWithoutCredits = {},
+                goToHistory = { /*navController.navigateTo(Routes.History)*/ },
+                goToWithoutCredits = { /*navController.navigateTo(Routes.Credits(hasEnoughCredits = false))*/ },
             )
         }
         /*var showContent by remember { mutableStateOf(false) }

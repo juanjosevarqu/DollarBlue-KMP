@@ -1,5 +1,6 @@
 package com.varqulabs.dollarblue
 
+import com.varqulabs.core.common.di.dispatchersModule
 import com.varqulabs.dollarblue.core.conversions.di.currencyConversionModule
 import com.varqulabs.dollarblue.core.credits.di.creditsModule
 import com.varqulabs.dollarblue.core.preferences.di.preferencesModule
@@ -12,6 +13,7 @@ fun initKoin(appDeclaration: KoinAppDeclaration? = null) {
     startKoin {
         appDeclaration?.invoke(this)
         modules(
+            dispatchersModule,
             preferencesModule,
             currencyConversionModule,
             creditsModule,
