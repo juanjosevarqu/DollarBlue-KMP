@@ -4,15 +4,12 @@ plugins {
     alias(libs.plugins.android.lint)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
-    alias(libs.plugins.ksp)
     alias(libs.plugins.kotlinx.serialization)
 }
 
 kotlin {
 
     androidLibrary {
-        experimentalProperties["android.experimental.kmp.enableAndroidResources"] = true
-
         namespace = "com.varqulabs.feature.welcome"
         compileSdk = libs.versions.android.compileSdk.get().toInt()
         minSdk = libs.versions.android.minSdk.get().toInt()
@@ -44,16 +41,12 @@ kotlin {
                 implementation(projects.core.coreUi)
                 implementation(projects.core.coreCommon)
                 implementation(projects.core.coreDesignsystem)
-                implementation(projects.core.coreNetwork)
                 implementation(projects.core.corePreferences)
-                implementation(projects.core.coreCredits)
-                api(projects.core.coreConversions)
 
                 implementation(compose.runtime)
                 implementation(compose.foundation)
                 implementation(compose.material3)
                 implementation(compose.ui)
-                implementation(compose.components.resources)
                 implementation(compose.components.uiToolingPreview)
                 implementation(libs.androidx.navigation.compose)
                 implementation(libs.bundles.koin.libraries)

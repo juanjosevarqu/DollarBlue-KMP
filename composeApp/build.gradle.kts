@@ -8,7 +8,6 @@ plugins {
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.ksp)
-    alias(libs.plugins.room)
 }
 
 kotlin {
@@ -27,22 +26,20 @@ kotlin {
         iosTarget.binaries.framework {
             baseName = "ComposeApp"
             isStatic = true
-
-            binaryOption("bundleId", "com.varqulabs.dollarblue.DollarBlueKMP")
+            binaryOption("bundleId", "com.varqulabs.dollarblue.DollarBlueKMP") // Warning Build IOS
         }
     }
 
     sourceSets {
         commonMain {
             dependencies {
-
-                implementation(projects.core.corePreferences)
-                implementation(projects.core.coreCredits)
-                implementation(projects.core.coreConversions)
-                implementation(projects.feature.welcome)
-                implementation(projects.feature.calculator)
                 implementation(projects.core.coreUi)
                 implementation(projects.core.coreCommon)
+                implementation(projects.core.corePreferences)
+                implementation(projects.core.coreConversions)
+                implementation(projects.core.coreCredits)
+                implementation(projects.feature.welcome)
+                implementation(projects.feature.calculator)
 
                 implementation(compose.runtime)
                 implementation(compose.foundation)
@@ -50,51 +47,24 @@ kotlin {
                 implementation(compose.ui)
                 implementation(compose.components.resources)
                 implementation(compose.components.uiToolingPreview)
-                implementation(libs.androidx.lifecycle.viewmodelCompose)
-                implementation(libs.androidx.lifecycle.runtimeCompose)
+
                 implementation(libs.androidx.navigation.compose)
-
                 implementation(libs.bundles.koin.libraries)
-                implementation(libs.bundles.room.libraries)
-                implementation(libs.bundles.ktor.libraries)
             }
         }
 
-        commonTest {
-            dependencies {
-                implementation(libs.kotlin.test)
-            }
-        }
+        commonTest { dependencies { implementation(libs.kotlin.test) } }
 
         androidMain {
             dependencies {
-                implementation(compose.preview)
-                implementation(libs.androidx.activity.compose)
-                implementation(libs.androidx.core.ktx)
-
-                implementation(libs.ktor.client.okhttp)
-                
                 implementation(libs.androidx.core.splashscreen)
                 implementation(libs.bundles.glance.libraries)
-            }
-        }
-
-        iosMain {
-            dependencies {
-                implementation(libs.ktor.client.darwin)
             }
         }
     }
 }
 
-room { schemaDirectory("$projectDir/schemas") }
-
 dependencies {
-    add("kspAndroid", libs.androidx.room.compiler)
-    add("kspIosArm64", libs.androidx.room.compiler)
-    add("kspIosX64", libs.androidx.room.compiler)
-    add("kspIosSimulatorArm64", libs.androidx.room.compiler)
-
     add("kspAndroid", libs.koin.ksp.compiler)
     add("kspIosArm64", libs.koin.ksp.compiler)
     add("kspIosX64", libs.koin.ksp.compiler)

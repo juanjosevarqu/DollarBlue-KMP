@@ -8,6 +8,7 @@ import com.varqulabs.dollarblue.core.ui.mvi.MVIContract
 import com.varqulabs.dollarblue.core.ui.mvi.MVIDelegate
 import com.varqulabs.core.common.extensions.roundDecimals
 import com.varqulabs.dollarblue.core.conversions.domain.model.CurrencyConversion
+import com.varqulabs.dollarblue.core.credits.domain.usecase.ConsumeCredits
 import com.varqulabs.dollarblue.core.credits.domain.usecase.GetCredits
 import com.varqulabs.feature.calculator.domain.model.DolarRate
 import com.varqulabs.feature.calculator.domain.model.DollarType
@@ -34,6 +35,7 @@ class CalculatorViewModel(
     private val getBolivianUSDT: GetBolivianUSDT,
     private val getCredits: GetCredits,
     private val saveConversion: SaveConversion,
+    private val consumeCredits: ConsumeCredits,
     private val dispatcher: CoroutineDispatcher,
 ) : ViewModel(), MVIContract<CalculatorState, CalculatorEvent, CalculatorUIEffect> by MVIDelegate(CalculatorState()) {
 
@@ -92,7 +94,10 @@ class CalculatorViewModel(
         )
         viewModelScope.launch(dispatcher) {
             runCatching { saveConversion(conversion) }
-                .onSuccess { emitEffect(ConversionSavedSuccessfully) }
+                .onSuccess {
+                    consumeCredits(1)
+                    emitEffect(ConversionSavedSuccessfully)
+                }
                 .onFailure { updateUi { copy(isError = true) } }
         }
     }
@@ -118,7 +123,6 @@ class CalculatorViewModel(
                 emitEffect(CalculatorUIEffect.ShowWithoutCreditsDialog)
             } else {
                 emitEffect(CalculatorUIEffect.ShowSaveConversionDialog)
-                //saveCurrencyConversion("") // TODO - Remove this line when dialog is implemented
             }
         }
     }

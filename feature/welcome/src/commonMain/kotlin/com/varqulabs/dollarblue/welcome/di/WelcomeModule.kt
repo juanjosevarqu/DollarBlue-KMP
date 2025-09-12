@@ -12,9 +12,11 @@ import org.koin.dsl.module
 val welcomeModule: Module = module {
     single<ObserveTermsAccepted> { ObserveTermsAccepted(get()) }
     single<AcceptTerms> { AcceptTerms(get()) }
-    viewModel { WelcomeViewModel(
-        observeTermsAccepted = get<ObserveTermsAccepted>(),
-        acceptTerms = get<AcceptTerms>(),
-        dispatcher = get(named(IO_DISPATCHER)),
-    ) }
+    viewModel {
+        WelcomeViewModel(
+            observeTermsAccepted = get<ObserveTermsAccepted>(),
+            acceptTerms = get<AcceptTerms>(),
+            dispatcher = get(named(IO_DISPATCHER)),
+        )
+    }
 }

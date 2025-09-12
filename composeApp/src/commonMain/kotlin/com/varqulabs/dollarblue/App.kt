@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
+import com.varqulabs.dollarblue.core.credits.navigation.creditsRoute
 import com.varqulabs.dollarblue.core.ui.launched_effect.LaunchedEffectOnce
 import com.varqulabs.dollarblue.core.ui.navigation.Routes
 import com.varqulabs.dollarblue.core.ui.navigation.navigateTo
@@ -52,7 +53,12 @@ fun App() {
             calculatorGraph(
                 navController = navController,
                 goToHistory = { /*navController.navigateTo(Routes.History)*/ },
-                goToWithoutCredits = { /*navController.navigateTo(Routes.Credits(hasEnoughCredits = false))*/ },
+                goToWithoutCredits = { navController.navigateTo(Routes.Credits(hasEnoughCredits = false)) },
+            )
+
+            creditsRoute(
+                navController = navController,
+                goToSaveConversion = { navController.navigateTo(Routes.SaveConversion) }
             )
         }
         /*var showContent by remember { mutableStateOf(false) }

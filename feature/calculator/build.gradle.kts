@@ -51,8 +51,8 @@ kotlin {
                 implementation(projects.core.coreDesignsystem)
                 implementation(projects.core.coreNetwork)
                 implementation(projects.core.corePreferences)
+                implementation(projects.core.coreConversions)
                 implementation(projects.core.coreCredits)
-                api(projects.core.coreConversions)
 
                 implementation(compose.runtime)
                 implementation(compose.foundation)
@@ -60,6 +60,7 @@ kotlin {
                 implementation(compose.ui)
                 implementation(compose.components.resources)
                 implementation(compose.components.uiToolingPreview)
+
                 implementation(libs.androidx.navigation.compose)
                 implementation(libs.bundles.koin.libraries)
             }

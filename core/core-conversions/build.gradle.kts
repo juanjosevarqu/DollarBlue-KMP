@@ -38,7 +38,6 @@ kotlin {
     }
 
     sourceSets {
-
         sourceSets.all {
             languageSettings.optIn("kotlin.time.ExperimentalTime")
         }
@@ -49,6 +48,7 @@ kotlin {
 
                 implementation(compose.runtime)
                 implementation(compose.components.resources)
+
                 implementation(libs.koin.core)
                 implementation(libs.bundles.room.libraries)
             }
