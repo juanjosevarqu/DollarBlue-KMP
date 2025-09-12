@@ -10,7 +10,7 @@ plugins {
 kotlin {
 
     androidLibrary {
-        namespace = "com.varqulabs.feature.welcome"
+        namespace = "com.varqulabs.dollarblue.feature.welcome"
         compileSdk = libs.versions.android.compileSdk.get().toInt()
         minSdk = libs.versions.android.minSdk.get().toInt()
     }
@@ -48,6 +48,7 @@ kotlin {
                 implementation(compose.material3)
                 implementation(compose.ui)
                 implementation(compose.components.uiToolingPreview)
+
                 implementation(libs.androidx.navigation.compose)
                 implementation(libs.bundles.koin.libraries)
             }

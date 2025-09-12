@@ -40,6 +40,7 @@ kotlin {
                 implementation(projects.core.coreCredits)
                 implementation(projects.feature.welcome)
                 implementation(projects.feature.calculator)
+                implementation(projects.feature.history)
 
                 implementation(compose.runtime)
                 implementation(compose.foundation)

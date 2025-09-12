@@ -15,10 +15,11 @@ import androidx.compose.ui.unit.sp
 import com.varqulabs.core.designsystem.whiteOpacity_80
 import com.varqulabs.feature.calculator.presentation.models.ButtonType
 import com.varqulabs.feature.calculator.presentation.models.CalButton
+import dollarbluekmp.core.core_conversions.generated.resources.save_as_outlined
 import dollarbluekmp.feature.calculator.generated.resources.Res
+import dollarbluekmp.core.core_conversions.generated.resources.Res as ResConversions
 import dollarbluekmp.feature.calculator.generated.resources.backspace_outlined_big
 import dollarbluekmp.feature.calculator.generated.resources.plus_outline
-import dollarbluekmp.feature.calculator.generated.resources.save_as_outlined
 import dollarbluekmp.feature.calculator.generated.resources.swap_outlined
 import org.jetbrains.compose.resources.vectorResource
 
@@ -62,7 +63,7 @@ fun CalculatorButton(
                 )
             ButtonType.SAVE ->
                 Icon(
-                    imageVector = vectorResource(resource = Res.drawable.save_as_outlined),
+                    imageVector = vectorResource(resource = ResConversions.drawable.save_as_outlined),
                     contentDescription = "",
                     tint = whiteOpacity_80,
                     modifier = Modifier.size(32.dp)

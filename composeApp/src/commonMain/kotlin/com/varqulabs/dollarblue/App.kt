@@ -13,6 +13,7 @@ import com.varqulabs.dollarblue.core.credits.navigation.creditsRoute
 import com.varqulabs.dollarblue.core.ui.launched_effect.LaunchedEffectOnce
 import com.varqulabs.dollarblue.core.ui.navigation.Routes
 import com.varqulabs.dollarblue.core.ui.navigation.navigateTo
+import com.varqulabs.dollarblue.history.navigation.historyRoute
 import com.varqulabs.dollarblue.welcome.navigation.welcomeRoute
 import com.varqulabs.dollarblue.welcome.presentation.WelcomeEvent
 import com.varqulabs.dollarblue.welcome.presentation.WelcomeViewModel
@@ -52,8 +53,13 @@ fun App() {
 
             calculatorGraph(
                 navController = navController,
-                goToHistory = { /*navController.navigateTo(Routes.History)*/ },
+                goToHistory = { navController.navigateTo(Routes.History) },
                 goToWithoutCredits = { navController.navigateTo(Routes.Credits(hasEnoughCredits = false)) },
+            )
+
+            historyRoute(
+                goToCalculator = { navController.navigateTo(Routes.Calculator) },
+                showCreditsInfo = { navController.navigateTo(Routes.Credits()) },
             )
 
             creditsRoute(

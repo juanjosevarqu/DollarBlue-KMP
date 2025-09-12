@@ -9,6 +9,8 @@ plugins {
 
 kotlin {
     androidLibrary {
+        experimentalProperties["android.experimental.kmp.enableAndroidResources"] = true
+
         namespace = "com.varqulabs.dollarblue.core.ui"
         compileSdk = libs.versions.android.compileSdk.get().toInt()
         minSdk = libs.versions.android.minSdk.get().toInt()
@@ -41,6 +43,7 @@ kotlin {
                 implementation(compose.ui)
                 implementation(compose.foundation)
                 implementation(compose.material3)
+                implementation(compose.components.resources)
 
                 implementation(libs.kotlinx.coroutines.core)
                 implementation(libs.androidx.navigation.compose)
@@ -53,4 +56,8 @@ kotlin {
             }
         }
     }
+}
+
+compose.resources {
+    this.publicResClass = true
 }

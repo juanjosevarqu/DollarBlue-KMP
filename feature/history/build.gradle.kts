@@ -4,7 +4,6 @@ plugins {
     alias(libs.plugins.android.lint)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
-    alias(libs.plugins.ksp)
     alias(libs.plugins.kotlinx.serialization)
 }
 
@@ -13,12 +12,12 @@ kotlin {
     androidLibrary {
         experimentalProperties["android.experimental.kmp.enableAndroidResources"] = true
 
-        namespace = "com.varqulabs.dollarblue.feature.calculator"
+        namespace = "com.varqulabs.dollarblue.feature.history"
         compileSdk = libs.versions.android.compileSdk.get().toInt()
         minSdk = libs.versions.android.minSdk.get().toInt()
     }
 
-    val xcfName = "FeatureCalculator"
+    val xcfName = "FeatureHistory"
 
     iosX64 {
         binaries.framework {
@@ -48,7 +47,6 @@ kotlin {
                 implementation(projects.core.coreUi)
                 implementation(projects.core.coreCommon)
                 implementation(projects.core.coreDesignsystem)
-                implementation(projects.core.coreNetwork)
                 implementation(projects.core.corePreferences)
                 implementation(projects.core.coreConversions)
                 implementation(projects.core.coreCredits)
