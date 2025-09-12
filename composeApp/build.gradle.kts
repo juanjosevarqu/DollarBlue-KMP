@@ -12,11 +12,10 @@ plugins {
 }
 
 kotlin {
-    //jvmToolchain(17)
     androidTarget {
         @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_17)
+            jvmTarget.set(JvmTarget.JVM_21)
         }
     }
 
@@ -40,6 +39,7 @@ kotlin {
                 implementation(projects.core.corePreferences)
                 implementation(projects.core.coreCredits)
                 implementation(projects.core.coreConversions)
+                implementation(projects.feature.welcome)
                 implementation(projects.feature.calculator)
                 implementation(projects.core.coreUi)
                 implementation(projects.core.coreCommon)
