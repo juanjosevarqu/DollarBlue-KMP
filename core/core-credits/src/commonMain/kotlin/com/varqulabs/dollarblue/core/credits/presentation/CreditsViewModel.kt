@@ -2,18 +2,16 @@ package com.varqulabs.dollarblue.core.credits.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.varqulabs.dollarblue.core.credits.domain.usecase.AddCredits
 import com.varqulabs.dollarblue.core.credits.presentation.CreditsEvent.OnSeeAd
 import com.varqulabs.dollarblue.core.credits.presentation.CreditsEvent.SuccessAdWatched
-import com.varqulabs.dollarblue.core.credits.domain.usecase.AddCredits
 import com.varqulabs.dollarblue.core.credits.presentation.CreditsUiEffect.ShowAd
 import com.varqulabs.dollarblue.core.credits.presentation.CreditsUiEffect.ShowError
 import com.varqulabs.dollarblue.core.ui.mvi.MVIContract
 import com.varqulabs.dollarblue.core.ui.mvi.MVIDelegate
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
-import org.koin.android.annotation.KoinViewModel
 
-@KoinViewModel
 class CreditsViewModel(
     private val addCredits: AddCredits,
     private val dispatcher: CoroutineDispatcher,

@@ -1,10 +1,12 @@
 package com.varqulabs.dollarblue
 
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.NavHost
@@ -13,6 +15,8 @@ import com.varqulabs.dollarblue.core.credits.navigation.creditsRoute
 import com.varqulabs.dollarblue.core.ui.launched_effect.LaunchedEffectOnce
 import com.varqulabs.dollarblue.core.ui.navigation.Routes
 import com.varqulabs.dollarblue.core.ui.navigation.navigateTo
+import com.varqulabs.dollarblue.core.ui.snackbar.SnackBarApp
+import com.varqulabs.dollarblue.core.ui.snackbar.SnackbarObserver
 import com.varqulabs.dollarblue.history.navigation.historyRoute
 import com.varqulabs.dollarblue.welcome.navigation.welcomeRoute
 import com.varqulabs.dollarblue.welcome.presentation.WelcomeEvent
@@ -26,6 +30,7 @@ import org.koin.compose.viewmodel.koinViewModel
 fun App() {
 
     val navController = rememberNavController()
+    val snackBarHostState = remember { SnackbarHostState() }
 
     val welcomeViewModel = koinViewModel<WelcomeViewModel>()
     val welcomeState by welcomeViewModel.uiState.collectAsStateWithLifecycle()
@@ -34,10 +39,16 @@ fun App() {
     LaunchedEffectOnce { welcomeEventHandler(WelcomeEvent.Init) }
 
     LaunchedEffect(welcomeState.hasAcceptedTerms) {
-        if (!welcomeState.hasAcceptedTerms) { navController.navigateTo(Routes.Welcome) }
+        if (!welcomeState.hasAcceptedTerms) {
+            navController.navigateTo(Routes.Welcome)
+        }
     }
 
-    MaterialTheme {
+    SnackbarObserver(snackBarHostState, navController)
+
+    Scaffold(
+        snackbarHost = { SnackBarApp(snackBarHostState) }
+    ) {
         NavHost(
             modifier = Modifier.fillMaxSize(),
             navController = navController,
@@ -67,30 +78,32 @@ fun App() {
                 goToSaveConversion = { navController.navigateTo(Routes.SaveConversion) }
             )
         }
-        /*var showContent by remember { mutableStateOf(false) }
-        Column(
-            modifier = Modifier
-                .background(MaterialTheme.colorScheme.primaryContainer)
-                .safeContentPadding()
-                .fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            Button(onClick = { showContent = !showContent }) {
-                Text("Click me! ")
-            }
-            AnimatedVisibility(showContent) {
-                val greeting = remember { Greeting().greet() }
-                Column(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                ) {
-
-                    Image(
-                        painter = painterResource(Currency.DOLLAR.symbolImage), contentDescription = null
-                    )
-                    Text("Compose: $greeting")
-                }
-            }
-        }*/
     }
+
+    /*var showContent by remember { mutableStateOf(false) }
+    Column(
+        modifier = Modifier
+            .background(MaterialTheme.colorScheme.primaryContainer)
+            .safeContentPadding()
+            .fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        Button(onClick = { showContent = !showContent }) {
+            Text("Click me! ")
+        }
+        AnimatedVisibility(showContent) {
+            val greeting = remember { Greeting().greet() }
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+
+                Image(
+                    painter = painterResource(Currency.DOLLAR.symbolImage), contentDescription = null
+                )
+                Text("Compose: $greeting")
+            }
+        }
+    }*/
+
 }

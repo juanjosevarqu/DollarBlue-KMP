@@ -37,8 +37,13 @@ kotlin {
     }
 
     sourceSets {
+        sourceSets.all {
+            languageSettings.optIn("kotlin.time.ExperimentalTime")
+        }
+
         commonMain {
             dependencies {
+                implementation(projects.core.coreDesignsystem)
                 implementation(compose.runtime)
                 implementation(compose.ui)
                 implementation(compose.foundation)

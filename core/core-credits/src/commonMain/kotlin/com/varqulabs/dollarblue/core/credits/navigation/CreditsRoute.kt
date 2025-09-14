@@ -10,6 +10,7 @@ import com.varqulabs.dollarblue.core.credits.presentation.CreditsUiEffect
 import com.varqulabs.dollarblue.core.credits.presentation.CreditsViewModel
 import com.varqulabs.dollarblue.core.ui.mvi.CollectUiEffect
 import com.varqulabs.dollarblue.core.ui.navigation.Routes
+import com.varqulabs.dollarblue.core.ui.snackbar.SnackBarController
 import org.koin.compose.viewmodel.koinViewModel
 
 fun NavGraphBuilder.creditsRoute(
@@ -34,7 +35,9 @@ fun NavGraphBuilder.creditsRoute(
         CollectUiEffect(uiEffect) { effect ->
             when(effect) {
                 is CreditsUiEffect.ShowAd -> {
+                    SnackBarController.showInfo("Cargando anuncio...")
                     eventHandler(CreditsEvent.SuccessAdWatched(1))
+                    SnackBarController.showInfo("Crédito obtenido exitosamente")
                     navController.popBackStack()
                     if (!onlyShowInfo) { goToSaveConversion() }
                     /*context.showToast(message = "Cargando Anuncio...", duration = LENGTH_LONG)
