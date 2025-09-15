@@ -9,6 +9,7 @@ import androidx.navigation.compose.composable
 import com.varqulabs.dollarblue.core.ui.launched_effect.LaunchedEffectOnce
 import com.varqulabs.dollarblue.core.ui.mvi.CollectUiEffect
 import com.varqulabs.dollarblue.core.ui.navigation.Routes
+import com.varqulabs.dollarblue.core.ui.snackbar.SnackBarController
 import com.varqulabs.feature.calculator.presentation.CalculatorEvent.Init
 import com.varqulabs.feature.calculator.presentation.CalculatorScreen
 import com.varqulabs.feature.calculator.presentation.CalculatorUIEffect.ConversionSavedSuccessfully
@@ -44,7 +45,7 @@ fun NavGraphBuilder.calculatorRoute(
             when (effect) {
                 is ShowSaveConversionDialog -> onGoToSaveConversion()
                 is ShowWithoutCreditsDialog -> onGoToWithoutCredits()
-                is ConversionSavedSuccessfully -> {} // TODO - Conversion saved successfully feedback
+                is ConversionSavedSuccessfully -> SnackBarController.showInfo("Conversión guardada exitosamente")
             }
         }
     }
