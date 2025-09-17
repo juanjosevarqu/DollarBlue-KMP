@@ -4,6 +4,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.dialog
 import androidx.navigation.toRoute
+import com.varqulabs.dollarblue.core.credits.ads.RewardedAdService
 import com.varqulabs.dollarblue.core.credits.presentation.CreditsEvent
 import com.varqulabs.dollarblue.core.credits.presentation.CreditsScreen
 import com.varqulabs.dollarblue.core.credits.presentation.CreditsUiEffect
@@ -12,6 +13,7 @@ import com.varqulabs.dollarblue.core.ui.mvi.CollectUiEffect
 import com.varqulabs.dollarblue.core.ui.navigation.Routes
 import com.varqulabs.dollarblue.core.ui.snackbar.SnackBarController
 import org.koin.compose.viewmodel.koinViewModel
+import org.koin.compose.koinInject
 
 fun NavGraphBuilder.creditsRoute(
     navController: NavHostController,
@@ -25,7 +27,7 @@ fun NavGraphBuilder.creditsRoute(
         val eventHandler = viewModel::eventHandler
         val uiEffect = viewModel.uiEffect
 
-        //val context = LocalContext.current
+        val adService = koinInject<RewardedAdService>()
 
         CreditsScreen(
             hasCredits = onlyShowInfo,
@@ -36,24 +38,19 @@ fun NavGraphBuilder.creditsRoute(
             when(effect) {
                 is CreditsUiEffect.ShowAd -> {
                     SnackBarController.showInfo("Cargando anuncio...")
-                    eventHandler(CreditsEvent.SuccessAdWatched(1))
-                    SnackBarController.showInfo("Crédito obtenido exitosamente")
-                    navController.popBackStack()
-                    if (!onlyShowInfo) { goToSaveConversion() }
-                    /*context.showToast(message = "Cargando Anuncio...", duration = LENGTH_LONG)
-                    context.showRewardedAd(
+                    adService.showRewardedAd(
                         onReward = {
-                            eventHandler(SuccessAdWatched(it))
-                            context.showToast(message = "Crédito obtenido exitosamente")
+                            eventHandler(CreditsEvent.SuccessAdWatched(it))
+                            SnackBarController.showInfo("Crédito obtenido exitosamente")
                         },
                         onDismissed = {
                             navController.popBackStack()
                             if (onlyShowInfo == false) { goToSaveConversion() }
                         },
-                        onError = { context.showToast(message = "Ocurrió un error al cargar el anuncio...") },
-                    )*/
+                        onError = { SnackBarController.showInfo("Ocurrió un error al cargar el anuncio...") }
+                    )
                 }
-                is CreditsUiEffect.ShowError -> {}//context.showToast(message = effect.message)
+                is CreditsUiEffect.ShowError -> SnackBarController.showInfo(effect.message)
             }
         }
     }

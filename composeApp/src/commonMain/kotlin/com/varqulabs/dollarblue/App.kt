@@ -79,31 +79,4 @@ fun App() {
             )
         }
     }
-
-    /*var showContent by remember { mutableStateOf(false) }
-    Column(
-        modifier = Modifier
-            .background(MaterialTheme.colorScheme.primaryContainer)
-            .safeContentPadding()
-            .fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-    ) {
-        Button(onClick = { showContent = !showContent }) {
-            Text("Click me! ")
-        }
-        AnimatedVisibility(showContent) {
-            val greeting = remember { Greeting().greet() }
-            Column(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalAlignment = Alignment.CenterHorizontally,
-            ) {
-
-                Image(
-                    painter = painterResource(Currency.DOLLAR.symbolImage), contentDescription = null
-                )
-                Text("Compose: $greeting")
-            }
-        }
-    }*/
-
 }

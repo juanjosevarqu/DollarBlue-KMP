@@ -2,6 +2,7 @@ package com.varqulabs.dollarblue
 
 import com.varqulabs.core.common.di.dispatchersModule
 import com.varqulabs.dollarblue.core.conversions.di.currencyConversionModule
+import com.varqulabs.dollarblue.core.credits.ads.adsModule
 import com.varqulabs.dollarblue.core.credits.di.creditsModule
 import com.varqulabs.dollarblue.core.preferences.di.preferencesModule
 import com.varqulabs.dollarblue.history.di.historyModule
@@ -22,6 +23,7 @@ fun initKoin(appDeclaration: KoinAppDeclaration? = null) {
             welcomeModule,
             calculatorModule,
             historyModule,
+            adsModule,
         )
     }
 }
