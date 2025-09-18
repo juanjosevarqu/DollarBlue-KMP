@@ -32,6 +32,7 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -166,7 +167,7 @@ private fun AboutThisApp(
         )
 
         Text(
-            "- Dolares y Bolivianos",
+            "- Dólares y Bolivianos",
             fontStyle = FontStyle.Italic,
             color = Color(0xFF00897B),
             fontWeight = FontWeight.Bold,
@@ -174,9 +175,12 @@ private fun AboutThisApp(
 
         Text(
             text = "Próximamente podras guardar tus conversiones favoritas y ver el historial de conversiones realizadas.",
-            fontStyle = FontStyle.Normal,
-            color = Color(0xFF004D40),
-            fontWeight = FontWeight.Bold,
+            style = TextStyle(
+                fontWeight = FontWeight.Bold,
+                color = Color(0xFF004D40),
+                fontSize = 14.sp,
+                lineHeight = 16.sp
+            )
         )
     }
 }
@@ -217,10 +221,14 @@ private fun TermsScrollable(
                         "No asumimos responsabilidad alguna por el uso que los usuarios puedan dar a esta información, ni por cualquier daño o perjuicio que pueda derivarse del uso de los datos proporcionados.\n\n" +
                         "Al utilizar Dolar Blue Bolivia - USDT, aceptas estos términos y condiciones.\n" +
                         "Nos reservamos el derecho de modificar, suspender o interrumpir el servicio en cualquier momento sin previo aviso.",
-                fontStyle = FontStyle.Italic,
-                fontSize = 13.sp,
-                color = Color(0xFF004D40),
-                fontWeight = FontWeight.Bold,
+                style = TextStyle(
+                    fontSize = 13.sp,
+                    fontStyle = FontStyle.Italic,
+                    color = Color(0xFF004D40),
+                    fontWeight = FontWeight.Bold,
+                    lineHeight = 14.sp,
+                    letterSpacing = 0.4.sp,
+                )
             )
 
             Spacer(
