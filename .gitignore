@@ -20,10 +20,15 @@ app/release/baselineProfiles/*.dm
 **/runConfigurations.xml
 **/AndroidProjectSystem.xml
 
-#Built application files
+# Build outputs
+**/build/
+**/*.dm
 *.apk
-*.ap_
 *.aab
+*.ap_
+
+# iOS Xcode
+DerivedData/
 
 # Gradle files
 .gradle/
