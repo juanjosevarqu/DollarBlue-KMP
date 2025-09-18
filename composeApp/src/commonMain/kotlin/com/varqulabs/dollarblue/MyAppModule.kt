@@ -20,10 +20,10 @@ fun initKoin(appDeclaration: KoinAppDeclaration? = null) {
             preferencesModule,
             currencyConversionModule,
             creditsModule,
+            adsModule,
             welcomeModule,
             calculatorModule,
             historyModule,
-            adsModule,
         )
     }
 }

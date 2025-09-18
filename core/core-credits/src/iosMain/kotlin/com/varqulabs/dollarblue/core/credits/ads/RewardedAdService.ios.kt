@@ -15,7 +15,7 @@ actual class RewardedAdService {
         adUnitId: String
     ) {
         CoroutineScope(Dispatchers.Main).launch {
-            delay(4.seconds)
+            delay(3.seconds)
             onReward(1)
             onDismissed()
         }

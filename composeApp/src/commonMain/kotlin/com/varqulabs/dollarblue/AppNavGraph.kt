@@ -22,12 +22,10 @@ import com.varqulabs.dollarblue.welcome.navigation.welcomeRoute
 import com.varqulabs.dollarblue.welcome.presentation.WelcomeEvent
 import com.varqulabs.dollarblue.welcome.presentation.WelcomeViewModel
 import com.varqulabs.feature.calculator.navigation.calculatorGraph
-import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-@Preview
-fun App() {
+fun AppNavGraph() {
 
     val navController = rememberNavController()
     val snackBarHostState = remember { SnackbarHostState() }
