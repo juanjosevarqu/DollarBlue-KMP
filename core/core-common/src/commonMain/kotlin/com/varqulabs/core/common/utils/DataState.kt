@@ -1,4 +1,4 @@
-package com.varqulabs.core.service.utils
+package com.varqulabs.core.common.utils
 
 sealed class DataState<out T> {
 

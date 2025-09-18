@@ -2,7 +2,7 @@ package com.varqulabs.feature.calculator.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.varqulabs.core.service.utils.DataState
+import com.varqulabs.core.common.utils.DataState
 import com.varqulabs.dollarblue.core.conversions.domain.model.Currency
 import com.varqulabs.dollarblue.core.ui.mvi.MVIContract
 import com.varqulabs.dollarblue.core.ui.mvi.MVIDelegate

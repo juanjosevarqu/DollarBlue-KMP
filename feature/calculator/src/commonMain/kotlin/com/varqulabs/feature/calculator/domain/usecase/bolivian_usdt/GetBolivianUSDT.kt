@@ -1,6 +1,6 @@
 package com.varqulabs.feature.calculator.domain.usecase.bolivian_usdt
 
-import com.varqulabs.core.service.utils.DataState
+import com.varqulabs.core.common.utils.DataState
 import com.varqulabs.feature.calculator.domain.model.BolivianUSDT
 import com.varqulabs.feature.calculator.domain.repository.BolivianUSDTRepository
 import kotlinx.coroutines.flow.Flow
