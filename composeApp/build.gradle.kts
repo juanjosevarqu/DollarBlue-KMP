@@ -103,8 +103,8 @@ android {
         applicationId = "com.varqulabs.dolarblueapp"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = libs.versions.versionCode.get().toInt()
+        versionName = libs.versions.versionName.get()
 
         manifestPlaceholders["ADMOB_ID"] = prop("ADMOB_ID")
         manifestPlaceholders["ADMOB_BANNER_ID"] = prop("ADMOB_BANNER_ID")
