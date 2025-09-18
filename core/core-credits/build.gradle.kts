@@ -1,7 +1,3 @@
-import com.codingfeline.buildkonfig.compiler.FieldSpec.Type
-import java.util.Properties
-import kotlin.apply
-
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.android.kotlin.multiplatform.library)
@@ -9,7 +5,6 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.kotlinx.serialization)
-    alias(libs.plugins.buildkonfig)
 }
 
 kotlin {
@@ -46,6 +41,7 @@ kotlin {
                 implementation(projects.core.coreCommon)
                 implementation(projects.core.coreDesignsystem)
                 implementation(projects.core.corePreferences)
+                implementation(projects.core.coreAds)
 
                 implementation(compose.runtime)
                 implementation(compose.foundation)
@@ -59,35 +55,5 @@ kotlin {
         }
 
         commonTest { dependencies { implementation(libs.kotlin.test) } }
-
-        androidMain {
-            dependencies {
-                implementation(libs.play.services.ads)
-            }
-        }
-    }
-}
-
-val localProps: Properties by lazy {
-    Properties().apply {
-        val candidates = listOf(
-            rootProject.file("local.properties"),
-            project.file("local.properties")
-        )
-        for (f in candidates) if (f.exists()) f.inputStream().use(::load)
-    }
-}
-
-fun prop(key: String): String =
-    localProps.getProperty(key)
-        ?: providers.environmentVariable(key).orNull
-        ?: error("Falta '$key' en local.properties o variables de entorno")
-
-buildkonfig {
-    packageName = "com.varqulabs.dollarblue.core.credits"
-    defaultConfigs {
-        buildConfigField(Type.STRING, "ADMOB_ID",      prop("ADMOB_ID"))
-        buildConfigField(Type.STRING, "ADMOB_BANNER_ID",   prop("ADMOB_BANNER_ID"))
-        buildConfigField(Type.STRING, "ADMOB_REWARDED_ID", prop("ADMOB_REWARDED_ID"))
     }
 }

@@ -31,6 +31,7 @@ dependencyResolutionManagement {
 include(":composeApp")
 include(":core:core-preferences")
 include(":core:core-credits")
+include(":core:core-ads")
 include(":core:core-conversions")
 include(":core:core-network")
 include(":feature:calculator")

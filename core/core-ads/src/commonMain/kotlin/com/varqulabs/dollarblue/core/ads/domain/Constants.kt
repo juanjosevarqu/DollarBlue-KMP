@@ -1,6 +1,6 @@
-package com.varqulabs.dollarblue.core.credits.ads
+package com.varqulabs.dollarblue.core.ads.domain
 
-import com.varqulabs.dollarblue.core.credits.BuildKonfig
+import com.varqulabs.dollarblue.core.ads.BuildKonfig
 
 object Constants {
 

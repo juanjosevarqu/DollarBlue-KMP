@@ -4,7 +4,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.dialog
 import androidx.navigation.toRoute
-import com.varqulabs.dollarblue.core.credits.ads.RewardedAdService
+import com.varqulabs.dollarblue.core.ads.data.RewardedAdService
 import com.varqulabs.dollarblue.core.credits.presentation.CreditsEvent
 import com.varqulabs.dollarblue.core.credits.presentation.CreditsScreen
 import com.varqulabs.dollarblue.core.credits.presentation.CreditsUiEffect

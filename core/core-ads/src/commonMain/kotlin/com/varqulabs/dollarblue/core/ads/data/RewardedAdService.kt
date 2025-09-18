@@ -1,4 +1,6 @@
-package com.varqulabs.dollarblue.core.credits.ads
+package com.varqulabs.dollarblue.core.ads.data
+
+import com.varqulabs.dollarblue.core.ads.domain.Constants
 
 expect class RewardedAdService() {
     fun showRewardedAd(

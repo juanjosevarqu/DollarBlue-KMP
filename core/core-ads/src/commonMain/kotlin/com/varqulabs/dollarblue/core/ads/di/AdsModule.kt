@@ -1,4 +1,4 @@
-package com.varqulabs.dollarblue.core.credits.ads
+package com.varqulabs.dollarblue.core.ads.di
 
 import org.koin.core.module.Module
 

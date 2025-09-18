@@ -1,4 +1,4 @@
-package com.varqulabs.dollarblue.core.credits.ads
+package com.varqulabs.dollarblue.core.ads.data
 
 import android.app.Activity
 import android.app.Application

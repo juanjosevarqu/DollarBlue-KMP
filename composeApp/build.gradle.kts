@@ -39,6 +39,7 @@ kotlin {
                 implementation(projects.core.corePreferences)
                 implementation(projects.core.coreConversions)
                 implementation(projects.core.coreCredits)
+                implementation(projects.core.coreAds)
                 implementation(projects.feature.welcome)
                 implementation(projects.feature.calculator)
                 implementation(projects.feature.history)
