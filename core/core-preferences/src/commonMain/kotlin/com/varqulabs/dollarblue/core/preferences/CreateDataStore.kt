@@ -9,7 +9,8 @@ import kotlinx.coroutines.IO
 import kotlinx.coroutines.SupervisorJob
 import okio.Path.Companion.toPath
 
-internal const val PREFERENCES_DATA_STORE_FILE_NAME = "dollarblue.preferences_pb"
+const val DOLLAR_BLUE_FILE_NAME = "dollarblue"
+internal const val PREFERENCES_DATA_STORE_FILE_NAME = "$DOLLAR_BLUE_FILE_NAME.preferences_pb"
 
 fun producePreferencesDataStore(path: String) : DataStore<Preferences> {
     return PreferenceDataStoreFactory.createWithPath(

@@ -35,6 +35,7 @@ kotlin {
         commonMain {
             dependencies {
                 implementation(projects.core.coreUi)
+                implementation(projects.core.coreDesignsystem)
                 implementation(projects.core.coreCommon)
                 implementation(projects.core.corePreferences)
                 implementation(projects.core.coreConversions)
