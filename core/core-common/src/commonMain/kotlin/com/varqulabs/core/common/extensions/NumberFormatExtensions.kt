@@ -5,8 +5,8 @@ import kotlin.math.pow
 import kotlin.math.round
 import kotlin.math.roundToLong
 
-fun Double.roundDecimals(fractionDigits: Int): Double {
-    val clamped = fractionDigits.coerceIn(0, 15)
+fun Double.roundDecimals(decimals: Int): Double {
+    val clamped = decimals.coerceIn(0, 15)
     val factor = 10.0.pow(clamped)
     return if (factor.isFinite()) round(this * factor) / factor else this
 }

@@ -11,7 +11,7 @@ data class CalculatorState(
     val isError: Boolean = false,
     val inputExpression: String = "100",
     val inputValue: Double = 100.0,
-    val outputValue: Double = 1650.0,
+    val outputValue: Double = 1400.0,
     val inputCurrency: Currency = Currency.DOLLAR,
     val outputCurrency: Currency = Currency.BOLIVIANO,
     val dollarRate: DolarRate = DolarRate(DollarType.USDT_SELL, 14.0),

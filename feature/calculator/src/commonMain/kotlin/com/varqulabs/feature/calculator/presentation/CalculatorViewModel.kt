@@ -2,14 +2,15 @@ package com.varqulabs.feature.calculator.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.varqulabs.core.common.extensions.roundDecimals
 import com.varqulabs.core.common.utils.DataState
 import com.varqulabs.dollarblue.core.conversions.domain.model.Currency
-import com.varqulabs.dollarblue.core.ui.mvi.MVIContract
-import com.varqulabs.dollarblue.core.ui.mvi.MVIDelegate
-import com.varqulabs.core.common.extensions.roundDecimals
 import com.varqulabs.dollarblue.core.conversions.domain.model.CurrencyConversion
 import com.varqulabs.dollarblue.core.credits.domain.usecase.ConsumeCredits
 import com.varqulabs.dollarblue.core.credits.domain.usecase.GetCredits
+import com.varqulabs.dollarblue.core.ui.mvi.MVIContract
+import com.varqulabs.dollarblue.core.ui.mvi.MVIDelegate
+import com.varqulabs.feature.calculator.domain.Constants.MAX_ACCEPTABLE_VALUE
 import com.varqulabs.feature.calculator.domain.model.DolarRate
 import com.varqulabs.feature.calculator.domain.model.DollarType
 import com.varqulabs.feature.calculator.domain.usecase.bolivian_usdt.GetBolivianUSDT
@@ -28,8 +29,6 @@ import kotlin.math.roundToLong
 import kotlin.time.Clock
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
-
-private const val MAX_ACCEPTABLE_VALUE = 999_999_999_999.99
 
 class CalculatorViewModel(
     private val getBolivianUSDT: GetBolivianUSDT,
