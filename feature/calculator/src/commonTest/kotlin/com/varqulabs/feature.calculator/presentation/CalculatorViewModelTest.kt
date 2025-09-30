@@ -73,7 +73,7 @@ class CalculatorViewModelTest {
     }
 
     @Test
-    fun `GIVEN viewmodel WHEN started THEN state is default`() {
+    fun given_viewmodel_when_started_then_state_is_default() {
         val state = viewModel.currentUiState
         assertEquals(
             CalculatorState(
@@ -90,7 +90,7 @@ class CalculatorViewModelTest {
     }
 
     @Test
-    fun `GIVEN usdt api throws error WHEN init event THEN state is error and loading is false`() = runTest {
+    fun given_usdt_api_throws_error_when_init_event_then_state_is_error_and_loading_is_false() = runTest {
         fakeBolivianUSDTRepository.offlineRate = BolivianUSDT()
         fakeBolivianUSDTRepository.throwApiError = true
 
@@ -103,7 +103,7 @@ class CalculatorViewModelTest {
     }
 
     @Test
-    fun `GIVEN repo only returns offline rate WHEN init event THEN state updates with offline rate`() = runTest {
+    fun given_repo_only_returns_offline_rate_when_init_event_then_state_updates_with_offline_rate() = runTest {
         val offlineRate = BolivianUSDT(
             valueSell = 17.3,
             dateUpdated = "2025-10-01T12:00:00Z"
@@ -126,7 +126,7 @@ class CalculatorViewModelTest {
     }
 
     @Test
-    fun `GIVEN repo returns offline and online rate WHEN init event THEN state prefers online rate over offline`() = runTest {
+    fun given_repo_returns_offline_and_online_rate_when_init_event_then_state_prefers_online_rate_over_offline() = runTest {
         val offlineRate = BolivianUSDT(
             valueSell = 17.3,
             dateUpdated = "2025-10-01T11:00:00Z"
@@ -149,7 +149,7 @@ class CalculatorViewModelTest {
     }
 
     @Test
-    fun `GIVEN initial state WHEN user swaps currencies THEN state updates correctly`() {
+    fun given_initial_state_when_user_swaps_currencies_then_state_updates_correctly() {
         val beforeState = viewModel.currentUiState
         assertEquals(Currency.DOLLAR, beforeState.inputCurrency)
         assertEquals(Currency.BOLIVIANO, beforeState.outputCurrency)
@@ -164,7 +164,7 @@ class CalculatorViewModelTest {
     }
 
     @Test
-    fun `GIVEN initial state WHEN user presses numbers THEN input updates correctly`() {
+    fun given_initial_state_when_user_presses_numbers_then_input_updates_correctly() {
         viewModel.eventHandler(OnPressButton("7", ButtonType.NUMBER))
         val state = viewModel.currentUiState
         assertEquals("1007", state.inputExpression)
@@ -177,7 +177,7 @@ class CalculatorViewModelTest {
     }
 
     @Test
-    fun `GIVEN input ends with operator WHEN user presses operator again THEN input does not append another operator`() {
+    fun given_input_ends_with_operator_when_user_presses_operator_again_then_input_does_not_append_another_operator() {
         viewModel.eventHandler(OnPressButton("+", ButtonType.OPERATOR))
         assertTrue(viewModel.currentUiState.inputExpression.endsWith("+"))
 
@@ -186,7 +186,7 @@ class CalculatorViewModelTest {
     }
 
     @Test
-    fun `GIVEN user with credits WHEN user presses save THEN emit show save conversion`() = runTest {
+    fun given_user_with_credits_when_user_presses_save_then_emit_show_save_conversion() = runTest {
         viewModel.uiEffect.test {
             viewModel.eventHandler(OnPressButton("Save", ButtonType.SAVE))
             assertEquals(CalculatorUIEffect.ShowSaveConversionDialog, awaitItem())
@@ -195,7 +195,7 @@ class CalculatorViewModelTest {
     }
 
     @Test
-    fun `GIVEN user has no credits WHEN user presses save THEN emit without credits`() = runTest {
+    fun given_user_has_no_credits_when_user_presses_save_then_emit_without_credits() = runTest {
         fakeCreditsRepository.hasEnoughCredits = false
         viewModel.uiEffect.test {
             viewModel.eventHandler(OnPressButton("Save", ButtonType.SAVE))
@@ -205,7 +205,7 @@ class CalculatorViewModelTest {
     }
 
     @Test
-    fun `GIVEN initial dollar rate WHEN user selects new rate THEN state updates correctly`() = runTest {
+    fun given_initial_dollar_rate_when_user_selects_new_rate_then_state_updates_correctly() = runTest {
         fakeBolivianUSDTRepository.offlineRate = BolivianUSDT(
             valueSell = 17.3,
             dateUpdated = "2025-10-01T12:00:00Z"
@@ -221,7 +221,7 @@ class CalculatorViewModelTest {
     }
 
     @Test
-    fun `GIVEN bigger input near limit WHEN user presses another number THEN input doesn't allow more digits`() {
+    fun given_bigger_input_near_limit_when_user_presses_another_number_then_input_does_not_allow_more_digits() {
         viewModel.updateUi {
             copy(
                 inputExpression = Constants.MAX_ACCEPTABLE_VALUE.toString(),
@@ -236,7 +236,7 @@ class CalculatorViewModelTest {
     }
 
     @Test
-    fun `GIVEN input ends with operator WHEN user presses zero THEN zero is not appended`() {
+    fun given_input_ends_with_operator_when_user_presses_zero_then_zero_is_not_appended() {
         viewModel.eventHandler(OnPressButton("+", ButtonType.OPERATOR))
         viewModel.eventHandler(OnPressButton("0", ButtonType.NUMBER))
 
@@ -245,7 +245,7 @@ class CalculatorViewModelTest {
     }
 
     @Test
-    fun `GIVEN some input WHEN user presses clear THEN state resets`() {
+    fun given_some_input_when_user_presses_clear_then_state_resets() {
         viewModel.eventHandler(OnPressButton("7", ButtonType.NUMBER))
         viewModel.eventHandler(OnPressButton("Clear", ButtonType.CLEAR))
 
@@ -256,4 +256,3 @@ class CalculatorViewModelTest {
     }
 
 }
-
