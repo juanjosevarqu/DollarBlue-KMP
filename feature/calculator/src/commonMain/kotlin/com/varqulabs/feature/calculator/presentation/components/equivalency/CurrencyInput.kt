@@ -19,6 +19,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -27,7 +29,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.varqulabs.core.designsystem.greenDark_45
 import com.varqulabs.dollarblue.core.conversions.domain.model.Currency
+import dollarbluekmp.feature.calculator.generated.resources.Res
+import dollarbluekmp.feature.calculator.generated.resources.current_input
 import kotlinx.coroutines.delay
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun CurrencyInput(
@@ -43,6 +48,7 @@ fun CurrencyInput(
 ) {
 
     var showCursor by remember { mutableStateOf(true) }
+    val currentInputSemantics = stringResource(Res.string.current_input)
 
     LaunchedEffect(Unit) {
         while (true) {
@@ -75,7 +81,7 @@ fun CurrencyInput(
                 maxLines = 1,
                 autoSize = TextAutoSize.StepBased(minFontSize = 20.sp, maxFontSize = fontStyle.fontSize),
                 overflow = TextOverflow.StartEllipsis,
-                modifier = Modifier.padding(end = 1.dp),
+                modifier = Modifier.padding(end = 1.dp).semantics { contentDescription = currentInputSemantics },
             )
 
             if (showCursor) {

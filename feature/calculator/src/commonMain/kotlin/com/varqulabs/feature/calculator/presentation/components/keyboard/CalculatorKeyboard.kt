@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import com.varqulabs.core.designsystem.greenDark_65
 import com.varqulabs.feature.calculator.presentation.models.ButtonType
@@ -30,6 +32,14 @@ import com.varqulabs.feature.calculator.presentation.models.CalButton.SWITCH
 import com.varqulabs.feature.calculator.presentation.models.CalButton.THREE
 import com.varqulabs.feature.calculator.presentation.models.CalButton.TWO
 import com.varqulabs.feature.calculator.presentation.models.CalButton.ZERO
+import dollarbluekmp.feature.calculator.generated.resources.Res
+import dollarbluekmp.feature.calculator.generated.resources.button_clear
+import dollarbluekmp.feature.calculator.generated.resources.button_delete
+import dollarbluekmp.feature.calculator.generated.resources.button_number
+import dollarbluekmp.feature.calculator.generated.resources.button_plus
+import dollarbluekmp.feature.calculator.generated.resources.button_save
+import dollarbluekmp.feature.calculator.generated.resources.button_swap
+import org.jetbrains.compose.resources.stringResource
 
 private val calculatorRows = listOf(
     listOf(SEVEN, EIGHT, NINE, DELETE),
@@ -70,11 +80,21 @@ private fun CalculatorRow(
         horizontalArrangement = Arrangement.spacedBy(1.dp)
     ) {
         buttons.forEach {
+            val desc = when (it.type) {
+                ButtonType.DELETE -> stringResource(Res.string.button_delete)
+                ButtonType.CLEAR -> stringResource(Res.string.button_clear)
+                ButtonType.SAVE -> stringResource(Res.string.button_save)
+                ButtonType.SWITCH -> stringResource(Res.string.button_swap)
+                ButtonType.OPERATOR -> stringResource(Res.string.button_plus)
+                ButtonType.NUMBER -> stringResource(Res.string.button_number, it.character)
+            }
+
             CalculatorButton(
                 button = it,
                 modifier = Modifier
                     .weight(1f)
                     .fillMaxSize()
+                    .semantics { contentDescription = desc }
                     .then(
                         if (it.type == ButtonType.DELETE) {
                             Modifier.combinedClickable(

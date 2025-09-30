@@ -1,0 +1,11 @@
+<resources>
+    <string name="button_delete">Delete button</string>
+    <string name="button_clear">Clear button</string>
+    <string name="button_save">Save conversion button</string>
+    <string name="button_swap">Swap currencies button</string>
+    <string name="button_plus">Plus button</string>
+    <string name="button_number">Number %1$s button</string>
+
+    <string name="current_input">current input</string>
+
+</resources>

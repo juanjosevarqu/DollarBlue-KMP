@@ -16,6 +16,13 @@ kotlin {
         namespace = "com.varqulabs.dollarblue.feature.calculator"
         compileSdk = libs.versions.android.compileSdk.get().toInt()
         minSdk = libs.versions.android.minSdk.get().toInt()
+
+        withHostTestBuilder {}
+        withDeviceTestBuilder {
+            sourceSetTreeName = "test"
+        }.configure {
+            instrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        }
     }
 
     val xcfName = "FeatureCalculator"
@@ -52,6 +59,7 @@ kotlin {
                 implementation(projects.core.corePreferences)
                 implementation(projects.core.coreConversions)
                 implementation(projects.core.coreCredits)
+                implementation(projects.core.coreAds)
 
                 implementation(compose.runtime)
                 implementation(compose.foundation)
@@ -70,12 +78,33 @@ kotlin {
                 implementation(libs.kotlin.test)
                 implementation(libs.kotlinx.coroutines.test)
                 implementation(libs.turbine)
+
+                @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
+                implementation(compose.uiTest)
             }
         }
 
         androidMain { dependencies {} }
 
         iosMain { dependencies {} }
+
+        getByName("androidDeviceTest") {
+            dependencies {
+                implementation(libs.androidx.runner)
+                implementation(libs.androidx.core)
+                implementation(libs.androidx.junit)
+                implementation(libs.androidx.room.runtime)
+            }
+        }
+
+        getByName("androidHostTest") {
+            dependencies {
+                implementation(libs.androidx.runner)
+                implementation(libs.androidx.core)
+                implementation(libs.androidx.junit)
+                implementation(libs.androidx.room.runtime)
+            }
+        }
     }
 
 }
