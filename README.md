@@ -6,10 +6,9 @@ Available in [Google Play Store](https://play.google.com/store/apps/details?id=c
 
 <img width="600" alt="Untitled design (4)" src="https://github.com/user-attachments/assets/c585136c-c736-4217-ab36-c6d9a66c2a17" />
 
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/407e6ffc-eb76-4c2c-a3ba-84bc38431b19" width="250"/>
-  <img src="https://github.com/user-attachments/assets/e9032659-d75d-4bc7-af02-5e44f927c6a6" width="250"/>
-  <img src="https://github.com/user-attachments/assets/7489671e-bcd5-42cd-9319-f33fab1853e2" width="250"/>
+<p>
+  <img src="https://github.com/user-attachments/assets/407e6ffc-eb76-4c2c-a3ba-84bc38431b19" width="240"/>
+  <img src="https://github.com/user-attachments/assets/e9032659-d75d-4bc7-af02-5e44f927c6a6" width="240"/>
 </p>
 
 ## 🗂️ Project structure
