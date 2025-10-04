@@ -34,7 +34,7 @@ Available in [Google Play Store](https://play.google.com/store/apps/details?id=c
 - **Google AdMob** for ads integration.
 
 ### Build setup
-- Clone the repository `https://github.com/juanjosevarqu/Recipe-Explorer.git`
+- Clone the repository `https://github.com/juanjosevarqu/DollarBlue-KMP.git`
 - Add your Google AdMob API Keys (ADMOB_ID, REWARDED_ID)
 - To run Tests, in your terminal:
   ```bash
