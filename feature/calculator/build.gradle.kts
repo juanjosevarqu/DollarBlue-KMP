@@ -17,7 +17,9 @@ kotlin {
         compileSdk = libs.versions.android.compileSdk.get().toInt()
         minSdk = libs.versions.android.minSdk.get().toInt()
 
-        withHostTestBuilder {}
+        withHostTestBuilder {}.configure {
+            isIncludeAndroidResources = true
+        }
         withDeviceTestBuilder {
             sourceSetTreeName = "test"
         }.configure {
@@ -103,6 +105,7 @@ kotlin {
                 implementation(libs.androidx.core)
                 implementation(libs.androidx.junit)
                 implementation(libs.androidx.room.runtime)
+                implementation(libs.robolectric)
             }
         }
     }
