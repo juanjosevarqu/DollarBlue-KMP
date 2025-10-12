@@ -111,3 +111,11 @@ kotlin {
     }
 
 }
+
+tasks.withType<Test>().configureEach {
+    if (name.contains("HostTest")) {
+        filter {
+            excludeTestsMatching("**.*ScreenTest")
+        }
+    }
+}
