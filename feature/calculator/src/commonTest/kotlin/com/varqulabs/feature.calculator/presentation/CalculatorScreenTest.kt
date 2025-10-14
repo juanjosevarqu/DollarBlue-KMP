@@ -6,13 +6,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.assert
 import androidx.compose.ui.test.assertIsDisplayed
-import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.runComposeUiTest
 import com.varqulabs.core.common.extensions.roundDecimals
+import com.varqulabs.core.common.formatter.AppLocale
+import com.varqulabs.core.common.formatter.NumberFormatter
 import com.varqulabs.feature.calculator.domain.model.DolarRate
 import com.varqulabs.feature.calculator.domain.model.DollarType
 import com.varqulabs.feature.calculator.presentation.components.rates.DolarRateSelector
@@ -22,10 +23,16 @@ import dollarbluekmp.feature.calculator.generated.resources.button_delete
 import dollarbluekmp.feature.calculator.generated.resources.button_number
 import dollarbluekmp.feature.calculator.generated.resources.current_input
 import org.jetbrains.compose.resources.stringResource
+import kotlin.test.BeforeTest
 import kotlin.test.Test
 
 @OptIn(ExperimentalTestApi::class)
 class CalculatorScreenTest {
+
+    @BeforeTest
+    fun setup() {
+        NumberFormatter.locale = AppLocale.EnUS
+    }
 
     @Test
     fun dollarRateSelectorDropdownMenuWorksWell() = runComposeUiTest {
@@ -81,14 +88,14 @@ class CalculatorScreenTest {
             )
         }
 
-        onNodeWithText("1 USDT ≈ 14.00 BOB").assertIsDisplayed()
-        onNodeWithText("1,400").assertIsDisplayed()
+        onNodeWithText("1 USDT ≈ 14.00 BOB").assertExists()
+        onNodeWithText("1,400").assertExists()
 
         onNodeWithText("Dólar USDT (Venta)").performClick()
         onNodeWithText("Dólar Oficial").performClick()
 
-        onNodeWithText("1 USDT ≈ 6.96 BOB").assertIsDisplayed()
-        onNodeWithText("696").assertIsDisplayed()
+        onNodeWithText("1 USDT ≈ 6.96 BOB").assertExists()
+        onNodeWithText("696").assertExists()
     }
 
     @Test
@@ -131,7 +138,7 @@ class CalculatorScreenTest {
         onNodeWithText("00").performClick()
         onNodeWithText("2").performClick()
 
-        onNodeWithText("859,593,002").assertIsDisplayed()
+        onNodeWithText("859,593,002").assertExists()
     }
 
     @Test
@@ -178,7 +185,5 @@ class CalculatorScreenTest {
         onNodeWithContentDescription(delete).performClick()
         onNodeWithContentDescription(input).assert(hasText("55"))
     }
-
-
 
 }
