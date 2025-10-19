@@ -6,8 +6,8 @@ on:
 
 jobs:
 
-  build_android:
-    name: Build Android (Debug)
+  build:
+    name: Build (Debug)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -33,5 +33,29 @@ jobs:
       - name: Generate BuildKonfig
         run: ./gradlew generateBuildKonfig
 
+      - name: Assemble Debug
+        run: ./gradlew :composeApp:assembleDebug
+
+  run_unit_test:
+    name: Run Unit Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '23'
+          cache: gradle
+
+      - name: Create local.properties
+        run : |
+          echo "ADMOB_ID=test" > ./local.properties
+          echo "ADMOB_BANNER_ID=test" >> ./local.properties
+          echo "ADMOB_REWARDED_ID=test" >> ./local.properties
+
+      - name: Gradle permissions
+        run: chmod +x gradlew
+
       - name: Unit tests
-        run: ./gradlew :feature:calculator:testAndroidHostTest
+        run: ./gradlew :feature:calculator:testAndroid
