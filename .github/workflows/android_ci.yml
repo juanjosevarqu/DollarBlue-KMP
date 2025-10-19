@@ -1,0 +1,33 @@
+name: Android CI
+
+on:
+  push:
+    branches: [ master, feature/action-build]
+  pull_request:
+    branches: [ master, feature/action-build]
+
+jobs:
+
+  build_android:
+    name: Build Android (Debug)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+          cache: gradle
+
+      - name: Gradle permissions
+        run: chmod +x gradlew
+
+      - name: Clean
+        run: ./gradlew clean
+
+      - name: Generate BuildKonfig
+        run: ./gradlew generateBuildKonfig
+
+      - name: Unit tests
+        run: ./gradlew :feature:calculator:testAndroidHostTest
