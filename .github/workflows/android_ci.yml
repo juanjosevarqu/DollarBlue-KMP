@@ -1,0 +1,55 @@
+name: Android CI
+
+on:
+  pull_request:
+    branches: [ master, feature/action-build]
+
+jobs:
+
+  build:
+    name: Build (Debug)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '23'
+          cache: gradle
+
+      - name: Create local.properties
+        run : |
+          echo "ADMOB_ID=test" > ./local.properties
+          echo "ADMOB_BANNER_ID=test" >> ./local.properties
+          echo "ADMOB_REWARDED_ID=test" >> ./local.properties
+
+      - name: Gradle permissions
+        run: chmod +x gradlew
+
+      - name: Assemble Debug
+        run: ./gradlew :composeApp:assembleDebug
+
+  run_unit_tests:
+    name: Run Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '23'
+          cache: gradle
+
+      - name: Create local.properties
+        run: |
+          echo "ADMOB_ID=test" > ./local.properties
+          echo "ADMOB_BANNER_ID=test" >> ./local.properties
+          echo "ADMOB_REWARDED_ID=test" >> ./local.properties
+
+      - name: Gradle permissions
+        run: chmod +x gradlew
+
+      - name: Unit tests
+        run: ./gradlew :feature:calculator:testAndroid
